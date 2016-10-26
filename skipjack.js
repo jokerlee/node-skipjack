@@ -32,29 +32,19 @@ var SkipConstants = {
     ]
 };
 
-module.exports = function(secret) {
-    return new SkipJack(secret);
-}
-
-var SkipJack = function(secret) {
+var SkipJack = module.exports = function(secret) {
     this.secret = secret.slice(0); // copy secret
 }
 
 
 SkipJack.prototype.encodeBase64URLSafeStringLong = function(value) {
-	if (typeof value == "number") {
-		value = new Long(value, 0);
-	}
-    var encoded = encrypt(value, this.secret);
+    var encoded = this.encrypt(value);
 
     // byte[] rawData = ByteBuffer.allocate(8).putLong(encoded).array();
     var buf = new Buffer(LONG_BYTES);
     buf.writeInt32BE(encoded.high);
     buf.writeInt32BE(encoded.low, 4);
    
-    console.log(value.low);
-    console.log(buf);
-
     // return Base64.encodeBase64URLSafeString(rawData);
     return URLSafeBase64.encode(buf);
 }
@@ -65,11 +55,20 @@ SkipJack.prototype.decodeBase64Long = function(value) {
     if (buf.length != LONG_BYTES) {
         throw new Error("fail to decode: " + value);
     }
-    console.log(buf);
     // long encoded = ByteBuffer.wrap(encrypted).getLong();
     var encoded = new Long(buf.readUInt32BE(4), buf.readUInt32BE(0));
-    console.log(encoded.toString());
-    return decrypt(encoded, this.secret);
+    return this.decrypt(encoded);
+}
+
+SkipJack.prototype.encrypt = function(value) {
+	if (typeof value == "number") {
+		value = Long.fromNumber(value);
+	}
+    return encrypt(value, this.secret);
+}
+
+SkipJack.prototype.decrypt = function(value) {
+    return decrypt(value, this.secret);
 }
 
 
