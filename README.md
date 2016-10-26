@@ -8,6 +8,14 @@ Porting from [dstar4138/jskipjack java](https://github.com/dstar4138/jskipjack).
 Use [Long.js](https://github.com/dcodeIO/long.js) for 64bit interger operations.
 
 
+Install
+----------
+```shell
+npm install skipjack
+
+```
+
+
 Usage
 ----------
 
