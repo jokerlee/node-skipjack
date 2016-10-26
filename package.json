@@ -1,0 +1,20 @@
+{
+  "name": "skipjack",
+  "version": "0.1.0",
+  "description": "SkipJack cipher 64bit version, porting from github.com/dstar4138/jskipjack",
+  "main": "skipjack.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "skipjack",
+    "cipher",
+    "64bit"
+  ],
+  "author": "jokerlee (jokerleee@gmail.com)",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "long": "3.2.0",
+    "urlsafe-base64": "1.0.0"
+  }
+}
