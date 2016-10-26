@@ -3,12 +3,13 @@ SkipJack
 
 SkipJack Cipher with 64bit integer support for node.js.
 
-Porting from [dstar4138/jskipjack java](https://github.com/dstar4138/jskipjack)
+Porting from [dstar4138/jskipjack java](https://github.com/dstar4138/jskipjack).
+
 Use [Long.js](https://github.com/dcodeIO/long.js) for 64bit interger operations.
 
 
 Usage
-=========
+----------
 
 ```javascript
 var SkipJack = require("skipjack");
@@ -35,5 +36,4 @@ var decrypted2 = skipJack.decodeBase64Long(encryptedBase64);
 console.log(decrypted2);
 // Long { low: 1234, high: 0, unsigned: false }
 
-...
 ```
